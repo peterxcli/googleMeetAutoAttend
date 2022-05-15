@@ -25,6 +25,7 @@ def Glogin(driver, mail_address, password):
 
 
 def turnOffMicCam(driver):
+    time.sleep(5)
     driver.implicitly_wait(2000)
     xpath_btn = '/html/body/div[1]/c-wiz/div/div/div[10]/div[3]/div/div[1]/div[3]/div/div/div[1]/div[1]/div/div[4]/div[1]/div/div/div[1]'
     driver.find_element_by_xpath(xpath_btn).click()
@@ -35,6 +36,7 @@ def turnOffMicCam(driver):
 
 
 def joinNow(driver):
+    time.sleep(5)
     driver.implicitly_wait(2000)
     xpath_btn = '/html/body/div[1]/c-wiz/div/div/div[10]/div[3]/div/div[1]/div[3]/div/div/div[2]/div/div[2]/div/div[1]/div[1]/button'
     driver.find_element_by_xpath(xpath_btn).click()
