@@ -6,6 +6,7 @@ from selenium.webdriver.chrome.options import Options
 import time
 import schedule
 import logging
+import selenium
 
 
 from utils import *
@@ -58,14 +59,20 @@ schedule_logger.setLevel(level = logging.DEBUG)
 
 last = 0
 while True:
-    schedule.run_pending()
-    chats = getChatMessage(driver)
-    # print(chats)
-    cur = len(chats)
-    if cur > last:
-        if chats[-1] in target:
-            sendMessage(driver, outputmessage)
-    last = cur
-    if driver.session_id == None :
-        break
-    time.sleep(1)
+    try:
+        schedule.run_pending()
+        chats = getChatMessage(driver)
+        # print(chats)
+        cur = len(chats)
+        if cur > last:
+            print(chats, last, cur)
+            for content in chats[last:cur] :
+                if content in target:
+                    sendMessage(driver, outputmessage)
+        last = cur
+        if driver.session_id == None :
+            break
+        
+        # time.sleep(10)
+    except selenium.common.exceptions.StaleElementReferenceException:
+        print("error")

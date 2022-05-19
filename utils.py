@@ -70,11 +70,15 @@ def getChatMessage(driver) :
     ret = []
     xpath = '/html/body/div[1]/c-wiz/div[1]/div/div[10]/div[3]/div[4]/div[2]/div[2]/div/div[3]'
     header = driver.find_element_by_xpath(xpath)
+    driver.implicitly_wait(2000)
     sub_header = header.find_elements(By.XPATH, "./*")
+    driver.implicitly_wait(2000)
     for chat in sub_header:
         chats = chat.find_elements(By.XPATH, "./*")
+        driver.implicitly_wait(2000)
         for item in chats:
             items = item.find_elements(By.XPATH, "./*")
+            driver.implicitly_wait(2000)
             for text in items:
                 ret.append(text.text)
 
