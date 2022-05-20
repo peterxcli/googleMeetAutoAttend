@@ -76,7 +76,7 @@ def getChatMessage(driver) :
     for chat in sub_header:
         chats = chat.find_elements(By.XPATH, "./*")
         driver.implicitly_wait(2000)
-        for item in chats:
+        for item in chats[1:]:
             items = item.find_elements(By.XPATH, "./*")
             driver.implicitly_wait(2000)
             for text in items:
