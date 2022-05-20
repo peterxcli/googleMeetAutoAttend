@@ -27,11 +27,11 @@ opt.add_experimental_option("prefs", {
 driver = webdriver.Chrome(options=opt)
 
 #################################################################
-meet_url = 'https://meet.google.com/kbp-jdcg-ncz'
+meet_url = 'https://meet.google.com/123-4567-890'
 
 mail_address = ''
 password = ''
-target = ["7", "簽到"]
+target = {"簽到" : "老師好~", "點名" : "嗨嗨", "1" : "2"}
 outputmessage = "hello"
 ##################################################################
 
@@ -62,13 +62,12 @@ while True:
     try:
         schedule.run_pending()
         chats = getChatMessage(driver)
-        # print(chats)
         cur = len(chats)
-        if cur > last:
-            print(chats, last, cur)
-            for content in chats[last:cur] :
-                if content in target:
-                    sendMessage(driver, outputmessage)
+        print(chats, last, cur)
+        for content in chats[last:cur] :
+            if content in target:
+                outputmessage = target[content]
+                sendMessage(driver, outputmessage)
         last = cur
         if driver.session_id == None :
             break
